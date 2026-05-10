@@ -1,4 +1,5 @@
 # ai-career-ops
+Inspired by Santifer https://github.com/santifer/career-ops
 
 # AI Career Ops Agent
 
