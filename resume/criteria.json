@@ -1,0 +1,17 @@
+{
+  "target_titles": [
+    "Data Engineer",
+    "AI Engineer",
+    "GenAI Engineer",
+    "Machine Learning Engineer"
+  ],
+  "locations": ["Remote", "United States"],
+  "remote_preference": "remote_first",
+  "seniority": ["Mid", "Senior"],
+  "comp_floor_usd": 130000,
+  "employment_types": ["Full-time", "C2C", "Contract"],
+  "required_keywords": [],
+  "avoid_keywords": [],
+  "minimum_match_score": 65,
+  "boards": ["indeed", "ziprecruiter", "dice"]
+}
