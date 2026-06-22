@@ -22,9 +22,14 @@ job-scout  ─────►  resume-tailor  ─────►  application-su
 | Stage | Agent | Reads | Writes | Status transition |
 |---|---|---|---|---|
 | 1. Discover | `job-scout` | `resume/criteria.json`, `resume/base_resume.md`, job board APIs | `dashboard/applications.json` (new entries) | → `discovered` |
-| 2. Tailor | `resume-tailor` | `resume/base_resume.md`, posting | `dashboard/materials/<id>-resume.md`, `<id>-cover-letter.md` | `discovered` → `materials_ready` |
+| 2. Tailor | `resume-tailor` | `resume/base_resume.md`, posting | `dashboard/materials/<id>-resume.md`, `<id>-cover-letter.md`, a tailored Google Doc (Drive) | `discovered` → `materials_ready` |
 | 3. Prepare submission | `application-submitter` | tailored materials | Gmail draft or `<id>-submission-checklist.md` | `materials_ready` → `ready_to_submit` |
-| 4. Track | `application-tracker` | `dashboard/applications.json` | `dashboard/applications.json`, `dashboard/DASHBOARD.md` | any → next (user-confirmed) |
+| 4. Track & notify | `application-tracker` | `dashboard/applications.json` | `dashboard/applications.json`, `dashboard/DASHBOARD.md`, Gmail digest draft | any → next (user-confirmed) |
+
+This mirrors the pattern from Abhijay Vuyyuru's "Build an AI agent that
+automates your entire job hunt process" (scrape → score → tailor →
+Google Doc → email digest), adapted into Claude Code subagents with an
+explicit human-confirmation gate before anything is ever sent externally.
 
 ## Human-in-the-loop gate
 

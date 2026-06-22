@@ -1,17 +1,20 @@
 {
   "target_titles": [
-    "Data Engineer",
+    "Senior Data Scientist",
     "AI Engineer",
     "GenAI Engineer",
-    "Machine Learning Engineer"
+    "LLM Engineer",
+    "Machine Learning Engineer",
+    "Sr. Cloud Data Developer",
+    "Data Scientist - RAG/LLM"
   ],
-  "locations": ["Remote", "United States"],
+  "locations": ["Remote", "Denver, CO", "United States"],
   "remote_preference": "remote_first",
-  "seniority": ["Mid", "Senior"],
-  "comp_floor_usd": 130000,
+  "seniority": ["Senior", "Lead"],
+  "comp_floor_usd": 150000,
   "employment_types": ["Full-time", "C2C", "Contract"],
-  "required_keywords": [],
-  "avoid_keywords": [],
+  "required_keywords": ["LLM", "RAG", "Databricks", "Azure", "Python", "vector database", "prompt engineering", "MLOps"],
+  "avoid_keywords": ["entry level", "junior", "unpaid"],
   "minimum_match_score": 65,
   "boards": ["indeed", "ziprecruiter", "dice"]
 }
