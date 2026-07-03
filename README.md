@@ -18,3 +18,12 @@ Enhanced with:
 - ATS optimization
 - AI recruiting automation
 - Multi-agent job search strategy
+
+## Automated job search
+
+A daily automation searches Indeed, ZipRecruiter, and Dice, scores matches
+against tailored resumes, and logs everything to a Notion tracker — with
+opt-in auto-outreach via Gmail for high-confidence matches where a real
+recruiter contact is found. See [`docs/AUTOMATION.md`](docs/AUTOMATION.md)
+for how it works and its limitations, and
+[`config/search-criteria.yaml`](config/search-criteria.yaml) to tune it.

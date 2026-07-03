@@ -1,0 +1,80 @@
+# Job search automation config for Bhuvan S.
+# Consumed by docs/AUTOMATION.md pipeline and by the daily scheduled trigger.
+
+candidate:
+  name: "Bhuvan S"
+  email: "bhuvansarakam@gmail.com"
+  phone: "+1 (678) 989-6307"
+  linkedin: "linkedin.com/in/bhuvansdata"
+  github: "github.com/Bchamp21"
+  location: "Denver, CO"
+  needs_h1b_sponsorship: true
+  current_employer_exclude: "Janus Henderson Investors"
+
+resumes:
+  # Google Drive file IDs — source of truth, DOCX + PDF versions kept in sync.
+  data_engineer:
+    docx_id: "1Rw89Gjakba_PPh0_fFD5ExA9-rO44boY"
+    pdf_id: "1iMck_7YC7e0uHwmdmWSd657DEJHcCIpS"
+    title: "Resume_Bhuvan_S_SrDataEngineer_MGMA_Expanded"
+    archetype: "Microsoft Fabric / Databricks / Medallion Architecture / ADF / T-SQL"
+  data_scientist_llm_rag:
+    docx_id: "1jhlFi5FoQBLym5kqBP0KPRtapOT-vmea"
+    pdf_id: "1lvY9gI90G2S1pb4gMHi5VyK1RMPP9b7x"
+    title: "Resume_Bhuvan_S_SrDataScientist_Footbridge"
+    archetype: "LLM/RAG agentic workflows / Databricks / vector DBs / MLOps"
+
+tracker:
+  platform: notion
+  database_title: "Bhuvan S — Job Application Tracker"
+  database_id: "4bf82685-1baa-4ba9-b8c5-ddbe9a6fa004"
+  data_source_id: "7bd4d4a8-58d9-4efd-84ad-3a771f5c9520"
+
+search_queries:
+  - keywords: ["Senior Data Engineer", "Lead Data Engineer"]
+    locations: ["Remote", "Denver, CO"]
+    resume: data_engineer
+  - keywords: ["AI Engineer", "GenAI Engineer", "Applied AI Engineer"]
+    locations: ["Remote"]
+    resume: data_scientist_llm_rag
+  - keywords: ["LLM Engineer", "RAG Engineer", "AI Agent Developer"]
+    locations: ["Remote"]
+    resume: data_scientist_llm_rag
+  - keywords: ["Senior Data Scientist"]
+    locations: ["Remote"]
+    resume: data_scientist_llm_rag
+  - keywords: ["Databricks Data Engineer", "ML Platform Engineer"]
+    locations: ["Remote"]
+    resume: data_engineer
+
+sources: [indeed, zip_recruiter, dice]
+
+filters:
+  min_salary_fulltime_usd: 130000
+  min_rate_contract_usd_per_hr: 55
+  exclude_locations_substring: ["India", "IN"]
+  exclude_if_sponsorship_explicitly_denied: true    # e.g. "USC/GC only", willingToSponsor=false on Dice
+  exclude_federal_govcon: true                       # near-certain clearance/citizenship requirement
+  dedupe_against_tracker: true                        # skip company+role already logged
+
+scoring:
+  scale: "0-5, matches existing tracker convention"
+  factors:
+    - skills_alignment_with_best_fit_resume
+    - seniority_and_comp_fit
+    - sponsorship_likelihood
+    - remote_and_location_fit
+
+auto_send:
+  enabled: true
+  min_score_to_send: 4.3
+  requires: "a verified recruiter/hiring contact email found in the job posting or company page — NEVER guess or fabricate an email"
+  max_sends_per_run: 3
+  channel: gmail
+  on_send:
+    notion_status: "Applied"
+    notion_apply_link: preserved
+    notion_notes_append: "Auto-sent outreach email to {email} on {date}"
+  on_no_contact_email_available:
+    notion_status: "Evaluated"
+    notion_notes_append: "Ready to apply — no auto-submit tool for this board; click Apply Link"
